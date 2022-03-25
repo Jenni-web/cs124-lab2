@@ -1,0 +1,11 @@
+.sortBtn {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    border: none;
+
+    font-size: 15px;
+    padding: 10px;
+    transition-duration: 0.5s;
+    width: 40%;
+    display: inline-block;
+}

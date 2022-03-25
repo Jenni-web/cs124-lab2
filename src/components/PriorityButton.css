@@ -1,0 +1,23 @@
+.priBtn {
+    background-color: #C8E6E9;
+    width: 25%;
+    color: black;
+    font-size: 15px;
+
+
+}
+.priBtn.High {
+    background-color: #17a7b5d0;
+}
+
+.priBtn.Medium {
+    background-color: #79dbe4;
+}
+
+.priBtn.Low {
+    background-color: #cffafa;
+}
+
+.priBtn:hover {
+    background-color: #86BBBD;
+}

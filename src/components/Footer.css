@@ -1,0 +1,7 @@
+/*Style the footer (HideButton, DelButton, and SortButto)*/
+.footer {
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}

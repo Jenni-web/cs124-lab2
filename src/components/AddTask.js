@@ -10,7 +10,7 @@ export default function AddTask(props) {
             alert('Please add a task.')
             return
         }
-        props.addTask({text})
+        props.addTask(text)
         setText('')
     }
 

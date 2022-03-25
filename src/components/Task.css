@@ -6,7 +6,7 @@
     transition: 0.2s;
     background: #ADCBCE; /*#C3E0E5*/
     overflow: hidden;
-    width: 100%;
+    width: 75%;
     font-size: 18px;
     border: 3px;
     padding-left: 20px;
@@ -15,6 +15,10 @@
     border:1px solid #000;
 
 
+}
+li {
+    display: flex;
+    flex-direction: row;
 }
 
 /* Darker background-color on hover */
