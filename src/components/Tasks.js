@@ -5,13 +5,13 @@ export default function Tasks (props){
     return (
         <div>
             <ul className='lsItems'>
-                {props.tasks.map((task) => (
+                {props.tasks?.map((task) => (
                     <Task
                         key={task.id}
                         task={task}
                         completedTask={props.completedTask}
-                        renamedTask={props.renamedTask}
-                        prioritizedTask={props.prioritizedTask}/>
+                        renameTask={props.renameTask}
+                        changePriority={props.changePriority}/>
                 ))}
             </ul>
         </div>

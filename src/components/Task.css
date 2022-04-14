@@ -2,23 +2,24 @@
 .lsItem {
     cursor: pointer;
     position: relative;
-    padding: 24px .25px;
+    padding: 25px .2px;
     transition: 0.2s;
-    background: #ADCBCE; /*#C3E0E5*/
+    background: #3a99f2; /*#C3E0E5*/
     overflow: hidden;
-    width: 75%;
+    width: 60%;
     font-size: 18px;
     border: 3px;
     padding-left: 20px;
 
     display:inline-block;
     border:1px solid #000;
-
-
+    color: white;
 }
-li {
+
+individual-task {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 /* Darker background-color on hover */
@@ -36,4 +37,9 @@ li {
 /* When double tapped, hide tasks that are marked complete */
 .hidden {
     display: none;
+}
+
+.lsItem:focus {
+    outline: 4px solid red;
+    z-index: 1;
 }

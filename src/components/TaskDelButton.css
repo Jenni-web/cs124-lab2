@@ -17,3 +17,8 @@
 .dltBtn:hover {
     background-color: #5885AF; /**/
 }
+
+.dltBtn:focus {
+    outline: 4px solid red;
+    z-index: 10;
+}

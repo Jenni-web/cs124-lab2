@@ -9,3 +9,8 @@
     width: 40%;
     display: inline-block;
 }
+
+.sortBtn:focus {
+    outline: 4px solid red;
+    z-index: 10;
+}

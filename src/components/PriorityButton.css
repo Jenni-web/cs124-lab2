@@ -1,23 +1,28 @@
 .priBtn {
     background-color: #C8E6E9;
     width: 25%;
-    color: black;
+    color: white;
     font-size: 15px;
-
-
+    height: fit-content;
+    padding: 25px 2px;
 }
 .priBtn.High {
-    background-color: #17a7b5d0;
+    background-color: #1751b5d0;
 }
 
 .priBtn.Medium {
-    background-color: #79dbe4;
+    background-color: #79dbe4d6;
 }
 
 .priBtn.Low {
-    background-color: #cffafa;
+    background-color: #57e2e2b7;
 }
 
 .priBtn:hover {
     background-color: #86BBBD;
+}
+
+.priBtn:focus {
+    outline: 4px solid red;
+    z-index: 10;
 }

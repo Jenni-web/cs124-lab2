@@ -17,3 +17,8 @@
 .hideBtn:hover {
     background-color: #5885AF; /**/
 }
+
+.hideBtn:focus {
+    outline: 4px solid red;
+    z-index: 10;
+}

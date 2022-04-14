@@ -1,0 +1,88 @@
+/* Position and sizing of burger button */
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    left: 36px;
+    top: 36px;
+}
+
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+    display:none;
+    
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+}
+  
+/* General sidebar styles */
+.bm-menu {
+    background: #373a47;
+    font-size: 1.15em;
+    width: 100%;
+}
+  
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+    fill: #373a47;
+}
+  
+/* Wrapper for item list */
+.bm-item-list {
+    color: #b8b7ad;
+}
+  
+
+/* Styling of overlay */
+.bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.add-list {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Changes where the add list text is located */
+.add-list-text {
+    position: relative;
+    top: 15px;
+    left: 70px;
+    width: 70%;
+}
+
+/* Changes where the add list button is located */
+.add-list-button {
+    top: 15px;
+    width: 30%;
+}
+
+.listItems-exist {
+    position: fixed;
+    margin: 0 0;
+    padding: 0 0 0 7px;
+    top: 35%;
+    overflow-y: scroll;
+    height: 450px;
+
+}
+
+.listItems {
+    position: fixed;
+    margin-left: 0;
+    top: 35%;
+
+}
+
+ul {
+    list-style-type: none;
+
+}

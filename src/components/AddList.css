@@ -1,38 +1,38 @@
 /* Style the "Add" button */
-.addBtn {
+.addListBtn {
     background-color: #6ba6dd; /**/
     color: white;
     border: none;
     text-align: center;
     width: 25%;
-    display: inline-block;
+    /* height: 30px;  */
+    padding: 0;
     transition-duration: 0.5s;
-    font-size: 18px;
+    font-size: 25px;
     
 }
-.addBtn:hover {
+.addListBtn:hover {
     background-color: #5885AF; /**/
 }
 
 /* Style the input */
-.form {
+.list-form {
+    position: fixed;
+    top: 45px;
+    left: 12px;
     display: flex;
     flex-direction: row;
     
 }
 
-/* Style the input text box (to add todo)*/
-.input {
-    margin: 8px 0;
+/* Style the input text box*/
+.list-input {
+    margin: 0 0;
     border: none;
     border-radius: 0;
     width: 75%;
-    padding: 20px;
+    padding: 30px;
     box-sizing: border-box;
     float: left;
     font-size: 20px;
-}
-
-.hidden {
-    display: none;
 }

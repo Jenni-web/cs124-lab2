@@ -5,3 +5,15 @@
   text-align: center;
   width: 100%;
 }
+
+#listIcon {
+  position: fixed;
+  fill: black;
+  font-size: 50px;
+  left: 28px;
+  top: 27px;
+}
+
+/* #listIcon:hover {
+  background: #a90000;
+} */

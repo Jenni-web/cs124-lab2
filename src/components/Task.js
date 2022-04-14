@@ -1,21 +1,20 @@
 import './Task.css'
-import { useDoubleTap } from 'use-double-tap';
 import PriorityButton from './PriorityButton'
+import TaskCompleteBtn from './TaskCompleteBtn'
 
 export default function Task (props) {
-    const onDoubleTap = useDoubleTap((event) => 
-        props.completedTask(props.task.id, props.task.complete)
-    ) 
     const priorityLabel = props.task.priorityLevel === 1 ? "High Priority" : props.task.priorityLevel === 2 ? "Medium Priority" : "Low Priority"
     return (
-        <li className={`${props.task.hidden ? 'hidden' : ''}`}>
-        <input type='text'
-            className={`lsItem ${props.task.complete ? 'complete' : ''} ` }
-            onChange={(e) => props.renamedTask(props.task.id, e.target.value)}
-            {...onDoubleTap}
-            value={props.task.text}
-        />
-        <PriorityButton text={priorityLabel} prioritizedTask={props.prioritizedTask} task={props.task}/>
+        <li className={`individual-task ${props.task.hidden ? 'hidden' : ''}`}>
+                <TaskCompleteBtn completedTask={props.completedTask} task={props.task}/>
+                <input type='text'
+                    className={`lsItem ${props.task.complete ? 'complete' : ''} ` }
+                    aria-label={(props.task.complete ? 'completed task ' : 'uncompleted task ') + props.task.text}
+                    onChange={(e) => props.renameTask(props.task.id, e.target.value)}
+                    value={props.task.text}
+                />
+                <PriorityButton text={priorityLabel} changePriority={props.changePriority} task={props.task}/>
+
         </li>
     )
 }

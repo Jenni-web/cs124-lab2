@@ -29,9 +29,7 @@
    buttons at the bottom. Since the two buttons have different functions, we made the buttons 
    big and easily distinguishable.
     - Sort button is also located at the bottom of the screen along with two other buttons. 
-	 Users can sort the current tasks by one of the following rules: name, creation date, or priority. They
-   can switch between different sorting rule by clicking the button. The text shown is the current sorting
-   rule which by default is creation date.   
+	 Users can sort the current tasks by one of the following rules: name, creation date, or priority. They can switch between different sorting rule by clicking the button. The text shown is the current sorting rule which by default is creation date.   
 
 5. Colors mainly blue.
    - We made the colors mainly blue. It is mostly an aesthetic choice but also cool colors are 
@@ -49,7 +47,25 @@
      the tasks that make it into todo list tend to have high priority (if it is not, both of us would not 
      bother to put it in the list from the start). As the priority gets higher, the color of the button gets
      darker, since it is hard to distinguish the difference between each priority with just text. Colors
-     are chosen to fit the general theme of the app. 
+     are chosen to fit the general theme of the app.
+
+8. Before adding at least 1 task, user is not allowed to do anything related to tasks.
+
+9. List-related functions live in the sidebar, task-related functions live in the main screen.
+   - Anything related to lists (adding, deleteing, selecting lists) live in the sidebar which can be opened by
+		 clicking on the list icon in the upper-right corner. Task related functions (adding, marking as complete, setting priority,
+ hiding, deleteing, sorting) live in the main screen.
+
+10. Users can add, delete, select, and rename lists.
+		Users are able to perform the above functions by opening the sidebar.
+
+11. When adding and deleting lists, pop ups are used to disable any other functions and also for saving space.
+	  Since list-related functions are all in the sidebar, we decided it was better to create a seperate popup than to
+    create more buttons within. 
+
+12. For users with no mouse, we changed the outline color to red so that there is a better visiual cue.
+
+13. Icons are used where appropriate for better visiual cues and to conserve space. 
 
 ## Alternative Designs
    - We had three options for our color scheme: orange and blue. orange was our warm color.
@@ -84,10 +100,14 @@
      a task is always consistent for users (no need to scroll different length depending on how long the
      existing list is): just type in the text box and hit add (new task automatically placed ath the end
      of list). 
-   - We think using single tap and double tap to distinguish between renaming and marking complete is simple and easy to understand for every users. We made the rename to be single tap because usually in other applciations, we single tap the text box to type some things. 
    - Our buttons for setting priority and sorting only requires the users to tap on it until they reach the option
      they want. Also, because each button is correctly labeled with text indicating what it is for ("__ Priority", 
      "Sort By: _____"), we think it is quite simple and easy to figure out.
+
+## Videos
+   [With keyboard video](https://www.youtube.com/watch?v=_Q1dLTb9JSc)   
    
+   [With screen reader video](https://youtu.be/zAsuGjl1ZJY)
 ## Notes
-   - For now, our hide button and completed tasks do not work well when the order of operations is as follows: 1) click "Hide", 2) mark task(s) complete. In this case, the tasks that were marked complete after clicking the Hide Button does not get hidden. We think that this is due to the problem that we do not have a list of marked tasks, but keep track of them by changing class of them. 
+   - There has been some challenges with styling due to the package that we are using for sidebar. Since it came with predefined html and css, some of the parts we were not able to override thus had to adjust our design to fit 
+		 the package.

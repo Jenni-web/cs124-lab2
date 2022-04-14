@@ -1,0 +1,12 @@
+.complete-button {
+    background-color: #C8E6E9;
+    width: 11%;
+    color: white;
+    height: 50px;
+}
+
+
+.complete-button:focus {
+    outline: 4px solid red;
+    z-index: 10;
+}
