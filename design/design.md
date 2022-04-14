@@ -105,8 +105,9 @@
      "Sort By: _____"), we think it is quite simple and easy to figure out.
 
 ## Videos
-   [With keyboard video](https://www.youtube.com/watch?v=_Q1dLTb9JSc)
-	 [With screen reader video](https://youtu.be/zAsuGjl1ZJY)
+   [With keyboard video](https://www.youtube.com/watch?v=_Q1dLTb9JSc)   
+   
+   [With screen reader video](https://youtu.be/zAsuGjl1ZJY)
 ## Notes
    - There has been some challenges with styling due to the package that we are using for sidebar. Since it came with predefined html and css, some of the parts we were not able to override thus had to adjust our design to fit 
 		 the package.
