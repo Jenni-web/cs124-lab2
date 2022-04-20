@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 export default function TaskCompleteBtn(props) {
     return (
-        <IconButton className="complete-button" onClick={(e) => props.completedTask(props.task.id, props.task.complete)}>
+        <IconButton className="complete-button" onClick={(e) => props.completeTask(props.task.id, props.task.complete)}>
             {props.task.complete ? <DoneIcon/> : <CloseIcon/>}
         </IconButton>
     )

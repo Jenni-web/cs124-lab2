@@ -17,7 +17,7 @@ export default function SidebarItem (props) {
 			<li className="menu-item">
 				<label className='radio-button'>
 					<input type="radio" name="sidebar-item" 
-						checked = {props.list.id === props.currentListId? true : false}
+						checked = {props.list.id === props.currentListId}
 						aria-label={(props.list.text? props.list.text : "list")  + " selected"}
 						onChange={(e) => props.changeListId(props.list.id)}/>
 					<span className='checkmark'></span>

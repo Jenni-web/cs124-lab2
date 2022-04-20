@@ -16,16 +16,8 @@ export default function Sidebar(props) {
     setShowAddListPopup(!showAddListPopup);
   }
 
-  // classList.replace('bm-cross-button', 'bm-no-button')
-  // document.getElementsByClassName("bm-cross-button").className.replace('bm-cross-button', 'bm-no-button')
-  //.replace("bm-cross-button", "bm-no-button")
-  
   return (
     <Menu aria-hidden="true">
-      {/* {
-        showPopup ? (document.getElementsByClassName("bm-cross-button")[0].className = 'bm-cross-button')
-         : console.log()
-      } */}
       <div className='List'>
         <div className='add-list'>
           <h2 className='add-list-text'>LISTS</h2>

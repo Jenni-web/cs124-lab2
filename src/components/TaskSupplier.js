@@ -16,13 +16,15 @@ export default function TaskSupplier(props) {
     const [showComplete, setShowComplete] = useState(false);
     const [sortBy, setSortBy] = useState("created");
 
-    const qTask = query(collection(props.db, collectionName, props.currentListId, subCollectionName), orderBy(sortBy))
+    const listCollection = collection(props.db, collectionName, props.currentListId, subCollectionName)
+
+    const qTask = query(listCollection, orderBy(sortBy))
     const [tasks, loadingTasks, errorTasks] = useCollectionData(qTask);
 
     // Add task
     function addTask (taskName) {
         const uniqueId = generateUniqueID();
-        setDoc(doc(props.db, collectionName, props.currentListId, subCollectionName, uniqueId),
+        setDoc(doc(listCollection, uniqueId),
             {
                 id: uniqueId,
                 text: taskName,
@@ -34,8 +36,7 @@ export default function TaskSupplier(props) {
 
     // Delete task
     function deleteCompletedTasks () {
-
-        tasks.forEach(task => task.complete && deleteDoc(doc(props.db, collectionName, props.currentListId, subCollectionName, task.id)));
+        tasks.forEach(task => task.complete && deleteDoc(doc(listCollection, task.id)));
     }
 
     // Hide Task
@@ -45,17 +46,17 @@ export default function TaskSupplier(props) {
 
     // Rename Task
     function renameTask (id, value) {
-        updateDoc(doc(props.db, collectionName, props.currentListId, subCollectionName, id), {text: value});
+        updateDoc(doc(listCollection, id), {text: value});
     }
 
     // Complete Task
-    function completedTask (id, value) {
-        setDoc(doc(props.db, collectionName, props.currentListId, subCollectionName, id), {complete: !value}, {merge: true});
+    function completeTask (id, value) {
+        setDoc(doc(listCollection, id), {complete: !value}, {merge: true});
     }
 
     // Prioritize Task
     function changePriority (id, value) {
-        let priority = value
+        let priority = 1 + ((value + 1) % 3)
         if (value === 1) {   /* 1 is most urgent, 3 is least urgent*/ 
             priority = 2
         } else if (value === 2) {
@@ -63,7 +64,7 @@ export default function TaskSupplier(props) {
         } else {
             priority = 1
         }
-        setDoc(doc(props.db, collectionName, props.currentListId, subCollectionName, id), {priorityLevel : priority}, {merge: true});
+        setDoc(doc(listCollection, id), {priorityLevel : priority}, {merge: true});
     }
 
     // Sort Task
@@ -105,7 +106,7 @@ export default function TaskSupplier(props) {
                 (<div>
                 <AddTask addTask={addTask} currentListId={props.currentListId}/>
                 <Tasks tasks={filteredList} className='lsItems'
-                    completedTask={completedTask}
+                    completeTask={completeTask}
                     renameTask={renameTask}
                     changePriority={changePriority}
                     currentListId={props.currentListId}/>

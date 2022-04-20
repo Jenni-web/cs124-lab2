@@ -22,7 +22,6 @@ const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
 const collectionName = "List-Collection";
-// const subCollectionName = "Tasks-Collection";
 
 function App() {
     const qList = query(collection(db, collectionName));
