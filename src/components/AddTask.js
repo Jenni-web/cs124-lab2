@@ -4,7 +4,7 @@ import {useState} from 'react';
 export default function AddTask(props) {
     const [text, setText] = useState('')
 
-    function onSubmit (e) {
+    function addTaskName (e) {
         e.preventDefault()
         if(props.currentListId==='none') {
             alert('Please add a list and select it.')
@@ -19,17 +19,14 @@ export default function AddTask(props) {
 
 
     return (
-        <form className='form' onSubmit={onSubmit}>
+        <div className='form'>
             <input type='text'
                    placeholder='todo...'
                    className='input'
                    value={text}
                    aria-label={(text? text : "Add task name")}
                    onChange={(e) => setText(e.target.value)}/>
-            <input type='submit'
-                   value='Add'
-                   aria-label="add new task"
-                   className='addBtn'/>
-        </form>
+            <button onClick={addTaskName} aria-label="add new task" className="addBtn">Add</button>
+        </div>
     )
 }

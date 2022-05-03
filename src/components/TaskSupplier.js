@@ -50,8 +50,8 @@ export default function TaskSupplier(props) {
     }
 
     // Complete Task
-    function completeTask (id, value) {
-        setDoc(doc(listCollection, id), {complete: !value}, {merge: true});
+    function completeTask (id, isCompleted) {
+        setDoc(doc(listCollection, id), {complete: !isCompleted}, {merge: true});
     }
 
     // Prioritize Task

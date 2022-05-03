@@ -25,7 +25,7 @@ export default function DeletePopup(props) {
     }    
 
     return <div className={"delete-backdrop"}>
-        <div className="delete-modal">
+        <div className="delete-modal" aria-modal="true">
             <p>Are you sure want to delete this list?</p>
             <button className={"alert-cancel"} type={"button"}
                     onClick={props.onClose}
