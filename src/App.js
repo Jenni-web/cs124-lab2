@@ -26,18 +26,20 @@ const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 const auth = getAuth();
 
-const collectionName = "List-Collection";
+const collectionName = "List-AuthenticationRequired";
 
 function App(props) {
     const [user, loading, error] = useAuthState(auth);
 //     function verifyEmail() {
 //         sendEmailVerification(user);
 //     }
-    
     if (loading) {
         return <p>Checking...</p>;
     } else if (user) {
+        // if user is signed in
         return <div>
+            {/* TODO: In SignedInApp we want to pass in user.email and user.displayName so that we can display it in the actual app and not outside 
+                      And we want to put signOut button in SignedInApp*/}
             {user.email}
             {/* {user.displayName || user.email} */}
             <SignedInApp {...props} user={user}/>
@@ -49,32 +51,34 @@ function App(props) {
             {error && <p>Error App: {error.message}</p>}
             <TabList>
                 <SignIn key="Sign In"/>
-                {/* <SignUp key="Sign Up"/> */}
+                <SignUp key="Sign Up"/>
             </TabList>
         </>
     }
 }
 
 function SignIn() {
-    const [
-        signInWithEmailAndPassword,
-        user1, loading1, error1
-    ] = useSignInWithEmailAndPassword(auth);
-    const [
-        signInWithGoogle,
-        user2, loading2, error2
-    ] = useSignInWithGoogle(auth);
+    // SignIn w/ email and password
+    const [signInWithEmailAndPassword, user1, loading1, error1] = useSignInWithEmailAndPassword(auth);
+    
+    // SignIn w/ Google
+    const [signInWithGoogle,user2, loading2, error2] = useSignInWithGoogle(auth);
+    
+    // Keep track of email and passwords for the currently signed in user
     const [email, setEmail] = useState("");
     const [pw, setPw] = useState("");
 
+    // Checks to see if there is already a user
     if (user1 || user2) {
         // Shouldn't happen because App should see that
         // we are signed in.
         return <div>Unexpectedly signed in already</div>
     } else if (loading1 || loading2) {
+        // loading
         return <p>Logging in…</p>
     }
     return <div>
+        {/* error */}
         {error1 && <p>"Error logging in: " {error1.message}</p>}
         {error2 && <p>"Error logging in: " {error2.message}</p>}
 
@@ -83,11 +87,13 @@ function SignIn() {
         <input type="text" id='email' value={email}
                onChange={e=>setEmail(e.target.value)}/>
         <br/>
+
         {/* password */}
         <label htmlFor='pw'>pw: </label>
         <input type="text" id='pw' value={pw}
                onChange={e=>setPw(e.target.value)}/>
         <br/>
+
         {/* sign in with email and pw */}
         <button onClick={() =>signInWithEmailAndPassword(email, pw)}>
             Sign in with email/pw
@@ -98,44 +104,40 @@ function SignIn() {
         <button onClick={() => signInWithGoogle()}>
             Sign in with Google
         </button>
-
     </div>
-
-
 }
 
-// function SignUp() {
-//     const [
-//         createUserWithEmailAndPassword,
-//         userCredential, loading, error
-//     ] = useCreateUserWithEmailAndPassword(auth);
-//     const [email, setEmail] = useState("");
-//     const [pw, setPw] = useState("");
+function SignUp() {
+    // Creates user credentials to sign in
+    const [createUserWithEmailAndPassword, userCredential, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [email, setEmail] = useState("");
+    const [pw, setPw] = useState("");
 
-//     if (userCredential) {
-//         // Shouldn't happen because App should see that
-//         // we are signed in.
-//         return <div>Unexpectedly signed in already</div>
-//     } else if (loading) {
-//         return <p>Signing up…</p>
-//     }
-//     return <div>
-//         {error && <p>"Error signing up: " {error.message}</p>}
-//         <label htmlFor='email'>email: </label>
-//         <input type="text" id='email' value={email}
-//                onChange={e=>setEmail(e.target.value)}/>
-//         <br/>
-//         <label htmlFor='pw'>pw: </label>
-//         <input type="text" id='pw' value={pw}
-//                onChange={e=>setPw(e.target.value)}/>
-//         <br/>
-//         <button onClick={() =>
-//             createUserWithEmailAndPassword(email, pw)}>
-//             Create test user
-//         </button>
+    // If they already signed in
+    if (userCredential) {
+        // Shouldn't happen because App should see that
+        // we are signed in.
+        return <div>Unexpectedly signed in already</div>
+    } else if (loading) {
+        return <p>Signing up…</p>
+    }
+    return <div>
+        {/* If email already exists */}
+        {error && <p>"Error signing up: " {error.message}</p>}
+        <label htmlFor='email'>email: </label>
+        <input type="text" id='email' value={email}
+               onChange={e=>setEmail(e.target.value)}/>
+        <br/>
+        <label htmlFor='pw'>pw: </label>
+        <input type="text" id='pw' value={pw}
+               onChange={e=>setPw(e.target.value)}/>
+        <br/>
+        <button onClick={() => createUserWithEmailAndPassword(email, pw)}>
+            Create User
+        </button>
 
-//     </div>
-// }
+    </div>
+}
 
 function SignedInApp(props) {
     const qList = query(collection(db, collectionName), where("owner", "==", props.user.uid));
@@ -158,7 +160,7 @@ function SignedInApp(props) {
         setDoc(doc(db, collectionName, uniqueId),
             {
                 id: uniqueId,
-                owner: pRoomPreferencesSharp.user.uid,
+                owner: props.user.uid,
                 text: listName,
                 created: serverTimestamp(),
             }).then(() => setCurrentListId(uniqueId));
@@ -196,8 +198,10 @@ function SignedInApp(props) {
             changeListId={changeListId}
             currentListId={currentListId}
             db={db} 
+            collectionName={collectionName}
+            user={props.user}
         />
-        <TaskSupplier db={db} currentListId={currentListId}/>
+        <TaskSupplier db={db} currentListId={currentListId} collectionName={collectionName} user={props.user}/>
               
     </div>
   );

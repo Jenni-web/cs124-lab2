@@ -32,7 +32,7 @@ export default function SidebarItem (props) {
 			</li>
 			<p> </p>
 			
-			{showDeletePopup && <DeletePopup className='delete-popup' onClose={toggleModal} list={props.list} db={props.db}>
+			{showDeletePopup && <DeletePopup className='delete-popup' onClose={toggleModal} list={props.list} db={props.db} collectionName={props.collectionName}>
       			</DeletePopup>}
 			
 		</div>

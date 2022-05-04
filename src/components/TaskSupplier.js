@@ -8,16 +8,17 @@ import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc, query, serverTimestamp, setDoc, orderBy, updateDoc } from "firebase/firestore";
 
-const collectionName = "List-Collection";
-const subCollectionName = "Tasks-Collection";
+
+const subCollectionName = "Tasks-AuthenticationRequired";
 
 export default function TaskSupplier(props) {
 
     const [showComplete, setShowComplete] = useState(false);
     const [sortBy, setSortBy] = useState("created");
 
-    const listCollection = collection(props.db, collectionName, props.currentListId, subCollectionName)
+    const listCollection = collection(props.db, props.collectionName, props.currentListId, subCollectionName)
 
+    // const qList = query(collection(db, collectionName), where("owner", "==", props.user.uid));
     const qTask = query(listCollection, orderBy(sortBy))
     const [tasks, loadingTasks, errorTasks] = useCollectionData(qTask);
 
