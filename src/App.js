@@ -9,7 +9,7 @@ import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import { initializeApp } from "firebase/app";
 import { collection, doc, getFirestore, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
-import { getAuth, signOut } from "firebase/auth"; //sendEmailVerification,
+import { getAuth } from "firebase/auth"; //sendEmailVerification,
 import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
 // Our web app's Firebase configuration
@@ -37,13 +37,15 @@ function App(props) {
         return <p>Checking...</p>;
     } else if (user) {
         // if user is signed in
+        // if (!user.emailVerified) {
+        //    
+
+        //}
         return <div>
             {/* TODO: In SignedInApp we want to pass in user.email and user.displayName so that we can display it in the actual app and not outside 
                       And we want to put signOut button in SignedInApp*/}
-            {user.email}
             {/* {user.displayName || user.email} */}
             <SignedInApp {...props} user={user}/>
-            <button type="button" onClick={() => signOut(auth)}>Sign out</button>
             {/* {!user.emailVerified && <button type="button" onClick={verifyEmail}>Verify email</button>} */}
         </div>
     } else {
@@ -124,14 +126,20 @@ function SignUp() {
     return <div>
         {/* If email already exists */}
         {error && <p>"Error signing up: " {error.message}</p>}
+
+        {/* email */}
         <label htmlFor='email'>email: </label>
         <input type="text" id='email' value={email}
                onChange={e=>setEmail(e.target.value)}/>
         <br/>
+
+        {/* password */}
         <label htmlFor='pw'>pw: </label>
         <input type="text" id='pw' value={pw}
                onChange={e=>setPw(e.target.value)}/>
         <br/>
+
+        {/* sign up with email and pw */}
         <button onClick={() => createUserWithEmailAndPassword(email, pw)}>
             Create User
         </button>
@@ -190,7 +198,7 @@ function SignedInApp(props) {
 
     return (
     <div id='container'>
-      <Header title='TO DO LIST'/>
+      <Header title='TO DO LIST' user={props.user} auth={auth}/>
       <Sidebar outerContainerId={'container'}
             lists={lists}
             addList={addList}

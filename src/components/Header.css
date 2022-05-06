@@ -14,6 +14,13 @@
   top: 27px;
 }
 
-/* #listIcon:hover {
-  background: #a90000;
-} */
+#signOut {
+  background-color: black;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+}
+
+#signOut:hover {
+  background-color: blue;
+}
