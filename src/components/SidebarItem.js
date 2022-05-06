@@ -1,14 +1,21 @@
 import './SidebarItem.css';
 import {useState} from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ShareIcon from '@mui/icons-material/Share';
 import IconButton from '@mui/material/IconButton';
 import DeletePopup from './DeletePopup';
+import ShareListPopup from './ShareListPopup';
+import AddSharePeople from './AddSharePeople';
 
 export default function SidebarItem (props) {
 	const [showDeletePopup, setShowDeletePopup] = useState(false);
+	const [showSharePopup, setShowSharePopup] = useState(false);
 
-	function toggleModal() {
+	function deleteListToggleModal() {
 		setShowDeletePopup(!showDeletePopup);
+	}
+	function shareListToggleModal() {
+		setShowSharePopup(!showSharePopup);
 	}
 
 	return (
@@ -28,12 +35,19 @@ export default function SidebarItem (props) {
 					onChange={(e) => props.renameList(props.list.id, e.target.value)}
 					value={props.list.text} 
 				/>
-				<IconButton onClick={toggleModal} aria-label="open delete list pop up" className='trash-can'><DeleteIcon style={{ fill: '#0072ea' }}/></IconButton>
+				<IconButton onClick={deleteListToggleModal} aria-label="open delete list pop up" className='trash-can'><DeleteIcon style={{ fill: '#0072ea' }}/></IconButton>
+				<IconButton onClick={shareListToggleModal} aria-label="open share list pop up" className='share'><ShareIcon style={{ fill: '#0072ea' }}/></IconButton>
 			</li>
 			<p> </p>
 			
-			{showDeletePopup && <DeletePopup className='delete-popup' onClose={toggleModal} list={props.list} db={props.db} collectionName={props.collectionName}>
+			{showDeletePopup && <DeletePopup className='delete-popup' onClose={deleteListToggleModal} list={props.list} db={props.db} collectionName={props.collectionName}>
       			</DeletePopup>}
+			{showSharePopup && <ShareListPopup className='share-popup' onClose={shareListToggleModal} list={props.list}>
+				<div>
+					<AddSharePeople addShareToList={props.addShareToList} list={props.list}/>
+				</div>
+
+      			</ShareListPopup>}
 			
 		</div>
 	)

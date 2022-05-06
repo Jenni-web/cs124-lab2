@@ -15,6 +15,7 @@ export default function Sidebar(props) {
   function toggleModal() {
     setShowAddListPopup(!showAddListPopup);
   }
+ 
 
   return (
     <Menu aria-hidden="true">
@@ -30,6 +31,7 @@ export default function Sidebar(props) {
                       key={list.id}
                       list={list}
                       renameList={props.renameList}
+                      addShareToList={props.addShareToList}
                       db={props.db}
                       changeListId={props.changeListId}
                       currentListId={props.currentListId}

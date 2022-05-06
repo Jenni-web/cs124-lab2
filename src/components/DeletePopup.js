@@ -2,10 +2,9 @@ import './DeletePopup.css';
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc, query } from "firebase/firestore";
 
-const subCollectionName = "Tasks-AuthenticationRequired";
+const subCollectionName = "Tasks";
 
 export default function DeletePopup(props) {
-    // const listCollection = collection(props.db, props.collectionName, props.currentListId, subCollectionName)
     const qTask = query(collection(props.db, props.collectionName, props.list.id, subCollectionName))
     const [tasks, loadingtasks, errortasks] = useCollectionData(qTask);
 

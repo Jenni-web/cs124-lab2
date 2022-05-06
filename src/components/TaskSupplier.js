@@ -9,7 +9,7 @@ import {useCollectionData} from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc, query, serverTimestamp, setDoc, orderBy, updateDoc } from "firebase/firestore";
 
 
-const subCollectionName = "Tasks-AuthenticationRequired";
+const subCollectionName = "Tasks";
 
 export default function TaskSupplier(props) {
 
@@ -87,7 +87,7 @@ export default function TaskSupplier(props) {
     // Error Screen
     if (errorTasks) {
         return (
-        <p>Error: {JSON.stringify(errorTasks)}</p>
+        <p>Task Error: {JSON.stringify(errorTasks)}</p>
 		)
     }
 

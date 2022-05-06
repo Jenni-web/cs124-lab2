@@ -3,13 +3,14 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import TaskSupplier from './components/TaskSupplier';
 import TabList from './components/TabList';
+import Verification from './components/Verification';
 
 import {useState} from 'react';
 import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import { initializeApp } from "firebase/app";
 import { collection, doc, getFirestore, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
-import { getAuth } from "firebase/auth"; //sendEmailVerification,
+import { sendEmailVerification, getAuth, signOut } from "firebase/auth";
 import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
 // Our web app's Firebase configuration
@@ -26,28 +27,31 @@ const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 const auth = getAuth();
 
-const collectionName = "List-AuthenticationRequired";
+// const collectionName = "List-AuthenticationRequired";
+const collectionName = "List-SharingAllowed";
 
 function App(props) {
     const [user, loading, error] = useAuthState(auth);
-//     function verifyEmail() {
-//         sendEmailVerification(user);
-//     }
+
+    function verifyEmail(user, auth) {
+        sendEmailVerification(user);
+        signOut(auth);
+    }
+
     if (loading) {
         return <p>Checking...</p>;
-    } else if (user) {
-        // if user is signed in
-        // if (!user.emailVerified) {
-        //    
+    } else if (user) { // if user is signed in
+        
+        if (!user.emailVerified) {
+            console.log("email not verified")
+           return <Verification verifyEmail={verifyEmail} auth={auth} user={user}/>
 
-        //}
-        return <div>
-            {/* TODO: In SignedInApp we want to pass in user.email and user.displayName so that we can display it in the actual app and not outside 
-                      And we want to put signOut button in SignedInApp*/}
-            {/* {user.displayName || user.email} */}
+        } else {
+            return <div>
             <SignedInApp {...props} user={user}/>
-            {/* {!user.emailVerified && <button type="button" onClick={verifyEmail}>Verify email</button>} */}
         </div>
+        }
+        
     } else {
         return <>
             {error && <p>Error App: {error.message}</p>}
@@ -148,7 +152,9 @@ function SignUp() {
 }
 
 function SignedInApp(props) {
-    const qList = query(collection(db, collectionName), where("owner", "==", props.user.uid));
+    // const qList = query(collection(db, collectionName), where("owner", "==", props.user.uid));
+    const qList = query(collection(db, collectionName), where("sharedWith", "array-contains", props.user.email));
+
     const [lists, loading, error] = useCollectionData(qList);
     const [currentListId, setCurrentListId] = useState('none')
 
@@ -169,11 +175,21 @@ function SignedInApp(props) {
             {
                 id: uniqueId,
                 owner: props.user.uid,
+                sharedWith: [props.user.email],
                 text: listName,
                 created: serverTimestamp(),
             }).then(() => setCurrentListId(uniqueId));
     }
     
+    // Add new people to share a list
+    // How to add to sharedWith array??
+    function addShareToList(list, shareEmail) {
+        const updatedShare = list.sharedWith.push(shareEmail)
+        console.log(updatedShare)
+        console.log(list.sharedWith)
+        updateDoc(doc(db, collectionName, list.id), {sharedWith: list.sharedWith});
+    }
+
     // Change current list Id
     function changeListId (id) {
         setCurrentListId(id);
@@ -202,6 +218,7 @@ function SignedInApp(props) {
       <Sidebar outerContainerId={'container'}
             lists={lists}
             addList={addList}
+            addShareToList={addShareToList}
             renameList={renameList}
             changeListId={changeListId}
             currentListId={currentListId}
