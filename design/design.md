@@ -91,7 +91,7 @@ lete button and share button does not appear for shared list.
      full width of the screen.
 
 ## Challenges
-   - One challenge in lab 5 wwas the design of displaying share-list related things: add share, stop share, view current share, etc. We decided to make another button besides delete list button for each list and make a popup. We moved on with decision because we did not want to add more things to the actual main page. By making it a popup, we are able to show all necessary things without affecting any other components from previous labs.e
+   - One challenge in lab 5 wwas the design of displaying share-list related things: add share, stop share, view current share, etc. We decided to make another button besides delete list button for each list and make a popup.e
    - The biggest challenge we had was making the Hide, Delete, and Sort button stick to the
      end of page and also not overlap with tasks when the list grew long. We were running into troubles 
      where buttons would not be sized right (even when set the width & height), moving as the list grows, 
@@ -109,9 +109,9 @@ lete button and share button does not appear for shared list.
      a task is always consistent for users (no need to scroll different length depending on how long the
      existing list is): just type in the text box and hit add (new task automatically placed ath the end
      of list). 
-   - Our buttons for setting priority and sorting only requires the users to tap on it until they reach the option they want. Also, because each button is correctly labeled with text indicating what it is for ("__ Priority", "Sort By: _____"), we think it is quite simple and easy to figure out.
-   - Our login & register page is very neat and easy to switch between login and register using tabs.
-   - The lists that user own and the lists that are shared are clearly distinguishable. Also, because buttons for deleteing and sharing lists are non-existent for lists that are shared to them, there is no confusion in what the users are able to do.
+   - Our buttons for setting priority and sorting only requires the users to tap on it until they reach the option
+     they want. Also, because each button is correctly labeled with text indicating what it is for ("__ Priority", 
+     "Sort By: _____"), we think it is quite simple and easy to figure out.
 
 ## Videos
    [With keyboard video](https://www.youtube.com/watch?v=_Q1dLTb9JSc)   
