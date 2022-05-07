@@ -51,6 +51,7 @@
 
 8. Before adding at least 1 task, user is not allowed to do anything related to tasks.
 
+
 9. List-related functions live in the sidebar, task-related functions live in the main screen.
    - Anything related to lists (adding, deleteing, selecting lists) live in the sidebar which can be opened by
 		 clicking on the list icon in the upper-right corner. Task related functions (adding, marking as complete, setting priority,
@@ -118,4 +119,4 @@ lete button and share button does not appear for shared list.
    
    [With screen reader video](https://youtu.be/zAsuGjl1ZJY)
 ## Notes
-   - There has been some challenges with styling due to the package that we are using for sidebar. Since it came with predefined html and css, some of the parts we were not able to override thus had to adjust our design to fit the package.
+
