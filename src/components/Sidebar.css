@@ -27,12 +27,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu {
     background: #373a47;
     font-size: 1.15em;
-    width: 340px;
-}
-  
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-    fill: #373a47;
+    width: 300px;
 }
   
 /* Wrapper for item list */
@@ -86,4 +81,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 ul {
     list-style-type: none;
 
+}
+
+.menu-item {
+    margin-top: 5px;
 }

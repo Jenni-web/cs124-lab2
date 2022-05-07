@@ -49,7 +49,7 @@
      darker, since it is hard to distinguish the difference between each priority with just text. Colors
      are chosen to fit the general theme of the app.
 
-8. Before at least a  
+8. 
 
 ## Alternative Designs
    - We had three options for our color scheme: orange and blue. orange was our warm color.

@@ -36,9 +36,14 @@
     position: relative;
 }
 
-.individual-email {
-    height: 50pt;
+.email-group {
+    padding: 0px 0px 0px 0px;
+    height: 100px;
     overflow-y: scroll;
-    font-size: 10px;
+}
 
+.email-individual {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    height: 25px;
 }
