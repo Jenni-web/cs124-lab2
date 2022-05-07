@@ -106,13 +106,13 @@ function SignIn() {
 
         {/* sign in with email and pw */}
         <button className='signInEP' onClick={() =>signInWithEmailAndPassword(email, pw)}>
-            Sign in with email/pw
+            Email Sign In
         </button>
 
         <hr/>
         {/* sign in via Google */}
         <button onClick={() => signInWithGoogle()}>
-            Google Sign in
+            Google Sign In
         </button>
         <br/>
         <br/>
@@ -133,6 +133,8 @@ function SignUp() {
     } else if (loading) {
         return <p>Signing up…</p>
     }
+
+
     return <div className='tab-content'>
         <br/>
         {/* If email already exists */}

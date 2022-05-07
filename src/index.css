@@ -12,7 +12,6 @@ code {
     monospace;
 }
 
-
 .tab-content {
   width: 450px;
   height: auto;
@@ -48,6 +47,7 @@ label {
   display: block;
   width: 75%;
   margin-left: 50px;
+  height: 25px;
 }
 
 .error-message {

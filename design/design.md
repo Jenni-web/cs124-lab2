@@ -49,8 +49,34 @@
      darker, since it is hard to distinguish the difference between each priority with just text. Colors
      are chosen to fit the general theme of the app.
 
-8. 
+8. Before adding at least 1 task, user is not allowed to do anything related to tasks.
 
+9. List-related functions live in the sidebar, task-related functions live in the main screen.
+   - Anything related to lists (adding, deleteing, selecting lists) live in the sidebar which can be opened by
+		 clicking on the list icon in the upper-right corner. Task related functions (adding, marking as complete, setting priority,
+ hiding, deleteing, sorting) live in the main screen.
+
+10. Users can add, delete, select, and rename lists.
+		Users are able to perform the above functions by opening the sidebar.
+
+11. When adding and deleting lists, pop ups are used to disable any other functions and also for saving space.
+	  Since list-related functions are all in the sidebar, we decided it was better to create a seperate popup than to
+    create more buttons within. 
+
+12. For users with no mouse, we changed the outline color to red so that there is a better visiual cue.
+
+13. Icons are used where appropriate for better visiual cues and to conserve space. 
+
+14. After signing up with email & password, user is asked to verify their email before moving onto the SignedInApp. They will be automatically signed out after verification email is sent. They will not be able to even see the SignedInApp if their email is not verified.
+
+15. Email of the currently signed in user is displayed at the top, right after "TO DO LIST".
+
+16. Sign out button is located at the top, right after current user's email.
+
+17. Only the owner of the list is allowed to: share a list with others, stop share, rename a list, and delete a list. All these operations are disabled for shared users. 
+
+18. Lists that the user own and the lists that are shared have distinguishable UI, since 
+lete button and share button does not appear for shared list.
 ## Alternative Designs
    - We had three options for our color scheme: orange and blue. orange was our warm color.
      opt ion and blue was our cool color option. Warm color is more likely to motivate the
@@ -65,12 +91,11 @@
      full width of the screen.
 
 ## Challenges
+   - One challenge in lab 5 wwas the design of displaying share-list related things: add share, stop share, view current share, etc. We decided to make another button besides delete list button for each list and make a popup. We moved on with decision because we did not want to add more things to the actual main page. By making it a popup, we are able to show all necessary things without affecting any other components from previous labs.e
    - The biggest challenge we had was making the Hide, Delete, and Sort button stick to the
      end of page and also not overlap with tasks when the list grew long. We were running into troubles 
      where buttons would not be sized right (even when set the width & height), moving as the list grows, 
-     or overlapping with the list. We now do have the buttons at the bottom even if items are added or deleted. Also,
-     by making the task list go into a seperate div, we were able to successfully separate the buttons and list 
-     so that even if the tasks overflow from the screen, they will not overlap with the buttons and instead become scrollable.
+     or overlapping with the list. We now do have the buttons at the bottom even if items are added or deleted. Also, by making the task list go into a seperate div, we were able to successfully separate the buttons and list so that even if the tasks overflow from the screen, they will not overlap with the buttons and instead become scrollable.
    - It was challenging for us to choose a color. Since it is a todo list, we want to encourage the 
      users to finish the tasks but also not stress them. We tried different colors, both warm and 
      cool colors, and in the end decided that we want to focus on not making the users stressed (if 
@@ -84,13 +109,13 @@
      a task is always consistent for users (no need to scroll different length depending on how long the
      existing list is): just type in the text box and hit add (new task automatically placed ath the end
      of list). 
-   - We think using single tap and double tap to distinguish between renaming and marking complete is simple and easy to understand for every users. We made the rename to be single tap because usually in other applciations, we single tap the text box to type some things. 
-   - Our buttons for setting priority and sorting only requires the users to tap on it until they reach the option
-     they want. Also, because each button is correctly labeled with text indicating what it is for ("__ Priority", 
-     "Sort By: _____"), we think it is quite simple and easy to figure out.
+   - Our buttons for setting priority and sorting only requires the users to tap on it until they reach the option they want. Also, because each button is correctly labeled with text indicating what it is for ("__ Priority", "Sort By: _____"), we think it is quite simple and easy to figure out.
+   - Our login & register page is very neat and easy to switch between login and register using tabs.
+   - The lists that user own and the lists that are shared are clearly distinguishable. Also, because buttons for deleteing and sharing lists are non-existent for lists that are shared to them, there is no confusion in what the users are able to do.
 
 ## Videos
-   - 
+   [With keyboard video](https://www.youtube.com/watch?v=_Q1dLTb9JSc)   
+   
+   [With screen reader video](https://youtu.be/zAsuGjl1ZJY)
 ## Notes
-   - For now, our hide button and completed tasks do not work well when the order of operations is as follows: 1) click "Hide", 2) mark task(s) complete. In this case, the tasks that were marked complete after clicking the Hide Button does not get hidden. We think that this is due to the problem that we do not have a list of marked tasks, but keep track of them by changing class of them.
- 
+   - There has been some challenges with styling due to the package that we are using for sidebar. Since it came with predefined html and css, some of the parts we were not able to override thus had to adjust our design to fit the package.
