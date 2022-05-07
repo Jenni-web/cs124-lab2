@@ -1,0 +1,28 @@
+
+
+.verification-modal {
+    background-color: #373a47;
+    border-radius: 5pt;
+    font-size: 18pt;
+    border-style: none;
+    margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 150pt;
+    width: 260pt;
+    padding: 10pt;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+.verification-button {
+    background-color: #41729F;
+    color: white;
+    font-size: 18pt;
+    position: absolute;
+    display: flex;
+    bottom: 10px;
+    left: 15%;
+}

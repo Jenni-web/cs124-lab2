@@ -9,7 +9,7 @@ export default function Tasks (props){
                     <Task
                         key={task.id}
                         task={task}
-                        completedTask={props.completedTask}
+                        completeTask={props.completeTask}
                         renameTask={props.renameTask}
                         changePriority={props.changePriority}/>
                 ))}

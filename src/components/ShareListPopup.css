@@ -1,0 +1,49 @@
+.sharelist-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 50;
+}
+
+.sharelist-modal {
+    background-color: #373a47;
+    border-radius: 5pt;
+    border-style: none;
+    margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 200pt;
+    width: 300pt;
+    padding: 10pt;
+    transform: translate(-50%, -50%);
+}
+
+.sharelist-close {
+    background-color: #41729F;
+    color: white;
+    font-size: 18pt;
+    position: absolute;
+    display: flex;
+    bottom: 10px;
+    right: 10px;
+}
+
+.sharelist {
+    position: relative;
+}
+
+.email-group {
+    padding: 0px 0px 0px 0px;
+    height: 100px;
+    overflow-y: scroll;
+}
+
+.email-individual {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    height: 25px;
+}

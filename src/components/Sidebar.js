@@ -15,17 +15,10 @@ export default function Sidebar(props) {
   function toggleModal() {
     setShowAddListPopup(!showAddListPopup);
   }
+ 
 
-  // classList.replace('bm-cross-button', 'bm-no-button')
-  // document.getElementsByClassName("bm-cross-button").className.replace('bm-cross-button', 'bm-no-button')
-  //.replace("bm-cross-button", "bm-no-button")
-  
   return (
     <Menu aria-hidden="true">
-      {/* {
-        showPopup ? (document.getElementsByClassName("bm-cross-button")[0].className = 'bm-cross-button')
-         : console.log()
-      } */}
       <div className='List'>
         <div className='add-list'>
           <h2 className='add-list-text'>LISTS</h2>
@@ -37,10 +30,14 @@ export default function Sidebar(props) {
                   <SidebarItem
                       key={list.id}
                       list={list}
+                      user={props.user}
                       renameList={props.renameList}
+                      addShareToList={props.addShareToList}
+                      stopShareOfList={props.stopShareOfList}
                       db={props.db}
                       changeListId={props.changeListId}
-                      currentListId={props.currentListId}/>
+                      currentListId={props.currentListId}
+                      collectionName={props.collectionName}/>
               ))}
         </ul>
       </div>

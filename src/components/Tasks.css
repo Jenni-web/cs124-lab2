@@ -2,14 +2,10 @@
 .lsItems {
     margin: 0;
     padding: 0;
-    height: 440px;
+    height: 373px;
     border-style: solid;
     overflow: auto;
     overflow-y: scroll;
 
-}
-
-.hidden {
-    display: none;
 }
  

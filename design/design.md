@@ -51,6 +51,7 @@
 
 8. Before adding at least 1 task, user is not allowed to do anything related to tasks.
 
+
 9. List-related functions live in the sidebar, task-related functions live in the main screen.
    - Anything related to lists (adding, deleteing, selecting lists) live in the sidebar which can be opened by
 		 clicking on the list icon in the upper-right corner. Task related functions (adding, marking as complete, setting priority,
@@ -67,6 +68,16 @@
 
 13. Icons are used where appropriate for better visiual cues and to conserve space. 
 
+14. After signing up with email & password, user is asked to verify their email before moving onto the SignedInApp. They will be automatically signed out after verification email is sent. They will not be able to even see the SignedInApp if their email is not verified.
+
+15. Email of the currently signed in user is displayed at the top, right after "TO DO LIST".
+
+16. Sign out button is located at the top, right after current user's email.
+
+17. Only the owner of the list is allowed to: share a list with others, stop share, rename a list, and delete a list. All these operations are disabled for shared users. 
+
+18. Lists that the user own and the lists that are shared have distinguishable UI, since 
+lete button and share button does not appear for shared list.
 ## Alternative Designs
    - We had three options for our color scheme: orange and blue. orange was our warm color.
      opt ion and blue was our cool color option. Warm color is more likely to motivate the
@@ -81,12 +92,11 @@
      full width of the screen.
 
 ## Challenges
+   - One challenge in lab 5 wwas the design of displaying share-list related things: add share, stop share, view current share, etc. We decided to make another button besides delete list button for each list and make a popup.e
    - The biggest challenge we had was making the Hide, Delete, and Sort button stick to the
      end of page and also not overlap with tasks when the list grew long. We were running into troubles 
      where buttons would not be sized right (even when set the width & height), moving as the list grows, 
-     or overlapping with the list. We now do have the buttons at the bottom even if items are added or deleted. Also,
-     by making the task list go into a seperate div, we were able to successfully separate the buttons and list 
-     so that even if the tasks overflow from the screen, they will not overlap with the buttons and instead become scrollable.
+     or overlapping with the list. We now do have the buttons at the bottom even if items are added or deleted. Also, by making the task list go into a seperate div, we were able to successfully separate the buttons and list so that even if the tasks overflow from the screen, they will not overlap with the buttons and instead become scrollable.
    - It was challenging for us to choose a color. Since it is a todo list, we want to encourage the 
      users to finish the tasks but also not stress them. We tried different colors, both warm and 
      cool colors, and in the end decided that we want to focus on not making the users stressed (if 
@@ -109,5 +119,4 @@
    
    [With screen reader video](https://youtu.be/zAsuGjl1ZJY)
 ## Notes
-   - There has been some challenges with styling due to the package that we are using for sidebar. Since it came with predefined html and css, some of the parts we were not able to override thus had to adjust our design to fit 
-		 the package.
+

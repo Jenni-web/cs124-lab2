@@ -1,0 +1,93 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Delete later
+    // match /{document=**} {
+    //   allow read, write: if true;
+    // }
+    
+    // Checks if signed in
+    function signedIn() {
+      return request.auth.uid != null;
+    }
+
+		// Checks if the user is signed in and is verified
+		function isValidUser() {
+    	return signedIn() && request.auth.token.email_verified
+    }
+    
+		// Checks if the person requesting data is the owner of the data
+    function isDocOwner() {
+      return request.auth.uid == resource.data.owner;
+    }
+
+		// When updating doc, check if the user making the request is the same as the data is to be updated.
+    function updatedDocHasCorrectOwner() {
+      return request.auth.uid == request.resource.data.owner;
+      // return request.auth.token.email == request.resource.data.owner;
+    }
+		
+    // When it updates, checks if the owner is still the same
+    function updatedDocHasSameOwner() {
+      return resource.data.owner == request.resource.data.owner;
+    }
+    
+    function updatedDocHasSameTimestamp() {
+    	return resource.data.created == request.resource.data.created;
+    }
+		
+    function updatedDocHasSameId() {
+    	return resource.data.id == request.resource.data.id();
+    }
+    
+    function isEssentialDataUnchanged() {
+    	return updatedDocHasSameOwner() && updatedDocHasSameTimestamp() && updatedDocHasSameId();
+    }
+		// Checks to see if the list is shared with the person making request
+    function isSharedWithMe(resourceData) {
+      return request.auth.token.email in resourceData.sharedWith;
+    }
+    
+    // Checks to see if the updated data still has the same sharing
+    function updatedDocHasSameSharing() {
+      return resource.data.sharedWith == request.resource.data.sharedWith;
+    }
+
+    match /List-AuthenticationRequired/{lists} {
+      match /Tasks-AuthenticationRequired/{tasks} {
+      	allow read, write: if true;
+      }
+      allow read: if signedIn() && isDocOwner();
+      allow create: if signedIn() && updatedDocHasCorrectOwner();
+      allow update: if signedIn() && isDocOwner() &&
+        updatedDocHasCorrectOwner();
+      allow delete: if signedIn() && isDocOwner();
+    }
+
+    match /List-SharingAllowed/{lists} {
+      // allow read only if you are a valid user and you are either the owner or shared with you
+      allow read: if isValidUser() && isSharedWithMe(resource.data);
+      // allow create only if you are a valid user and you are the owner
+      allow create: if isValidUser() && updatedDocHasCorrectOwner();
+      // allow update only if you are a valid user and you are either the owner or shared with you.
+      //  
+      // Only the owner can remove other people from the sharedWith
+      // allow update: if isValidUser() && updatedDocHasSameOwner()
+      // && ((isSharedWithMe(resource.data) && updateDocHasSameSharing()) || isDocOwner());
+      allow update: if (isValidUser() && isSharedWithMe(resource.data) &&
+        updatedDocHasSameOwner() && updateDocHasSameSharing()) || (isValidUser() && isDocOwner() && updatedDocHasSameOwner());
+        
+      // allow delete only if you are the owner
+      allow delete: if isValidUser() && isDocOwner();
+      
+      match /Tasks/{tasks} {
+      	function isListSharedWithMe() {
+        	// return request.auth.token.email in get(/databases/$(database)/documents/List-SharingAllowed/$(lists)).data.sharedWith;
+          return isSharedWithMe(get(/databases/$(database)/documents/List-SharingAllowed/$(lists)).data);
+        }
+      	allow read, write: if isValidUser() && isListSharedWithMe();
+      }
+    }
+	}
+}

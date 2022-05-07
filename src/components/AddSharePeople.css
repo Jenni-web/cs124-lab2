@@ -1,0 +1,38 @@
+/* Style the "Add" button */
+.shareListBtn {
+    background-color: #6ba6dd; /**/
+    color: white;
+    border: none;
+    text-align: center;
+    width: 25%;
+    /* height: 30px;  */
+    padding: 0;
+    transition-duration: 0.5s;
+    font-size: 25px;
+    
+}
+.shareListBtn:hover {
+    background-color: #5885AF; /**/
+}
+
+/* Style the input */
+.sharelist-form {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+/* Style the input text box*/
+.email-input {
+    margin: 0 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 30px;
+    box-sizing: border-box;
+    float: left;
+    font-size: 20px;
+}

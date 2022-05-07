@@ -2,16 +2,15 @@ import './DeletePopup.css';
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc, query } from "firebase/firestore";
 
-const collectionName = "List-Collection";
-const subCollectionName = "Tasks-Collection";
+const subCollectionName = "Tasks";
 
 export default function DeletePopup(props) {
-    const qTask = query(collection(props.db, collectionName, props.list.id, subCollectionName))
+    const qTask = query(collection(props.db, props.collectionName, props.list.id, subCollectionName))
     const [tasks, loadingtasks, errortasks] = useCollectionData(qTask);
 
     function deleteList() {
-        tasks.forEach(task => deleteDoc(doc(props.db, collectionName, props.list.id, subCollectionName, task.id)));
-        deleteDoc(doc(props.db, collectionName, props.list.id))
+        tasks.forEach(task => deleteDoc(doc(props.db, props.collectionName, props.list.id, subCollectionName, task.id)));
+        deleteDoc(doc(props.db, props.collectionName, props.list.id))
 
     }
 
@@ -25,7 +24,7 @@ export default function DeletePopup(props) {
     }    
 
     return <div className={"delete-backdrop"}>
-        <div className="delete-modal">
+        <div className="delete-modal" aria-modal="true">
             <p>Are you sure want to delete this list?</p>
             <button className={"alert-cancel"} type={"button"}
                     onClick={props.onClose}
