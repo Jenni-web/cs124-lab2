@@ -27,7 +27,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu {
     background: #373a47;
     font-size: 1.15em;
-    width: 100%;
+    width: 340px;
 }
   
 /* Morph shape necessary with bubble or elastic */
@@ -69,7 +69,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .listItems-exist {
     position: fixed;
     margin: 0 0;
-    padding: 0 0 0 7px;
+    padding: 0 0 0 10px;
     top: 45%;
     overflow-y: scroll;
     height: 400px;

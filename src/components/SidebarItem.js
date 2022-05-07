@@ -27,7 +27,6 @@ export default function SidebarItem (props) {
 						checked = {props.list.id === props.currentListId}
 						aria-label={(props.list.text? props.list.text : "list")  + " selected"}
 						onChange={(e) => props.changeListId(props.list.id)}/>
-					<span className='checkmark'></span>
 				</label>
 				<input type='text'
 					className='individual-list'
@@ -35,18 +34,14 @@ export default function SidebarItem (props) {
 					onChange={(e) => props.renameList(props.list.id, e.target.value)}
 					value={props.list.text} 
 				/>
-				<IconButton onClick={deleteListToggleModal} aria-label="open delete list pop up" className='trash-can'><DeleteIcon style={{ fill: '#0072ea' }}/></IconButton>
-				<IconButton onClick={shareListToggleModal} aria-label="open share list pop up" className='share'><ShareIcon style={{ fill: '#0072ea' }}/></IconButton>
+				{props.list.owner === props.user.uid && <IconButton onClick={deleteListToggleModal} aria-label="open delete list pop up" className='trash-can'><DeleteIcon style={{ fill: '#0072ea' }}/></IconButton>}
+				{props.list.owner === props.user.uid &&  <IconButton onClick={shareListToggleModal} aria-label="open share list pop up" className='share'><ShareIcon style={{ fill: '#0072ea' }}/></IconButton>}
 			</li>
-			<p> </p>
 			
-			{showDeletePopup && <DeletePopup className='delete-popup' onClose={deleteListToggleModal} list={props.list} db={props.db} collectionName={props.collectionName}>
+			{props.list.owner === props.user.uid && showDeletePopup && <DeletePopup className='delete-popup' onClose={deleteListToggleModal} list={props.list} db={props.db} collectionName={props.collectionName}>
       			</DeletePopup>}
-			{showSharePopup && <ShareListPopup className='share-popup' onClose={shareListToggleModal} list={props.list}>
-				<div>
+			{props.list.owner === props.user.uid && showSharePopup && <ShareListPopup className='share-popup' onClose={shareListToggleModal} stopShareOfList={props.stopShareOfList} list={props.list} user={props.user}>
 					<AddSharePeople addShareToList={props.addShareToList} list={props.list}/>
-				</div>
-
       			</ShareListPopup>}
 			
 		</div>

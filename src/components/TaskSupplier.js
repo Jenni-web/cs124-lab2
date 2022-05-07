@@ -36,27 +36,27 @@ export default function TaskSupplier(props) {
     }
 
     // Delete task
-    function deleteCompletedTasks () {
+    function deleteCompletedTasks() {
         tasks.forEach(task => task.complete && deleteDoc(doc(listCollection, task.id)));
     }
 
     // Hide Task
-    function hideTask () {
+    function hideTask() {
         setShowComplete(!showComplete)
     }
 
     // Rename Task
-    function renameTask (id, value) {
+    function renameTask(id, value) {
         updateDoc(doc(listCollection, id), {text: value});
     }
 
     // Complete Task
-    function completeTask (id, isCompleted) {
+    function completeTask(id, isCompleted) {
         setDoc(doc(listCollection, id), {complete: !isCompleted}, {merge: true});
     }
 
     // Prioritize Task
-    function changePriority (id, value) {
+    function changePriority(id, value) {
         let priority = 1 + ((value + 1) % 3)
         if (value === 1) {   /* 1 is most urgent, 3 is least urgent*/ 
             priority = 2
@@ -85,9 +85,9 @@ export default function TaskSupplier(props) {
     }
 
     // Error Screen
-    if (errorTasks) {
+    if (props.currentListId !== 'none' && errorTasks) {
         return (
-        <p>Task Error: {JSON.stringify(errorTasks)}</p>
+            <p>Task Error: {JSON.stringify(errorTasks)}</p>
 		)
     }
 

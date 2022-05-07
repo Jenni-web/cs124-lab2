@@ -1,0 +1,15 @@
+.tabs{
+    width: 450px;
+    height: auto;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.tab-list {
+    font-weight: bold;
+    text-align: center;
+    background: #343436;
+    border-radius: 20px;
+    height: 40px;
+    margin-bottom: 0%;
+}

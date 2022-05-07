@@ -30,8 +30,10 @@ export default function Sidebar(props) {
                   <SidebarItem
                       key={list.id}
                       list={list}
+                      user={props.user}
                       renameList={props.renameList}
                       addShareToList={props.addShareToList}
+                      stopShareOfList={props.stopShareOfList}
                       db={props.db}
                       changeListId={props.changeListId}
                       currentListId={props.currentListId}

@@ -54,10 +54,10 @@ function App(props) {
         
     } else {
         return <>
-            {error && <p>Error App: {error.message}</p>}
-            <TabList>
-                <SignIn key="Sign In"/>
-                <SignUp key="Sign Up"/>
+            {error && <p className='error-message'>Error App: {error.message}</p>}
+            <TabList className='tabs'>
+                <SignIn key="Login" className='sign-in'/>
+                <SignUp key="Register" className='sign-in'/>
             </TabList>
         </>
     }
@@ -83,33 +83,39 @@ function SignIn() {
         // loading
         return <p>Logging in…</p>
     }
-    return <div>
+
+    return <div className='tab-content'>
+        <br/>
         {/* error */}
-        {error1 && <p>"Error logging in: " {error1.message}</p>}
-        {error2 && <p>"Error logging in: " {error2.message}</p>}
+        {error1 && <p className='error-message'>Error logging in: {error1.message}</p>}
+        {error2 && <p className='error-message'>Error logging in: {error2.message}</p>}
 
         {/* email */}
-        <label htmlFor='email'>email: </label>
-        <input type="text" id='email' value={email}
-               onChange={e=>setEmail(e.target.value)}/>
+        <div className='form-group'>
+            <label htmlFor='signInEmail'>Email adress</label>
+            <input type="text" id='signInEmail' className='form-control' placeholder='name@example.com' 
+            value={email} onChange={e=>setEmail(e.target.value)}/>
+        </div>
         <br/>
 
         {/* password */}
-        <label htmlFor='pw'>pw: </label>
-        <input type="text" id='pw' value={pw}
+        <label htmlFor='pw'>Password </label>
+        <input type="text" id='pw' className='form-control' placeholder='password' value={pw}
                onChange={e=>setPw(e.target.value)}/>
         <br/>
 
         {/* sign in with email and pw */}
-        <button onClick={() =>signInWithEmailAndPassword(email, pw)}>
+        <button className='signInEP' onClick={() =>signInWithEmailAndPassword(email, pw)}>
             Sign in with email/pw
         </button>
 
         <hr/>
         {/* sign in via Google */}
         <button onClick={() => signInWithGoogle()}>
-            Sign in with Google
+            Google Sign in
         </button>
+        <br/>
+        <br/>
     </div>
 }
 
@@ -127,26 +133,31 @@ function SignUp() {
     } else if (loading) {
         return <p>Signing up…</p>
     }
-    return <div>
+    return <div className='tab-content'>
+        <br/>
         {/* If email already exists */}
-        {error && <p>"Error signing up: " {error.message}</p>}
+        {error && <p className='error-message'>Error signing up: {error.message}</p>}
 
         {/* email */}
-        <label htmlFor='email'>email: </label>
-        <input type="text" id='email' value={email}
-               onChange={e=>setEmail(e.target.value)}/>
+        <div className='form-group'>
+            <label htmlFor='email'>Email adress</label>
+            <input type="text" id='email' className='form-control' placeholder='name@example.com'
+            value={email} onChange={e=>setEmail(e.target.value)}/>
+        </div>
         <br/>
 
         {/* password */}
-        <label htmlFor='pw'>pw: </label>
-        <input type="text" id='pw' value={pw}
-               onChange={e=>setPw(e.target.value)}/>
+        <label htmlFor='pw'>Password</label>
+        <input type="text" id='pw' value={pw} className='form-control'
+        placeholder='password' onChange={e=>setPw(e.target.value)}/>
         <br/>
 
         {/* sign up with email and pw */}
         <button onClick={() => createUserWithEmailAndPassword(email, pw)}>
             Create User
         </button>
+        <br/>
+        <br/>
 
     </div>
 }
@@ -184,12 +195,15 @@ function SignedInApp(props) {
     // Add new people to share a list
     // How to add to sharedWith array??
     function addShareToList(list, shareEmail) {
-        const updatedShare = list.sharedWith.push(shareEmail)
-        console.log(updatedShare)
-        console.log(list.sharedWith)
+        list.sharedWith.push(shareEmail)
         updateDoc(doc(db, collectionName, list.id), {sharedWith: list.sharedWith});
     }
 
+    function stopShareOfList(list, deleteEmail) {
+        let updatedShare = list.sharedWith
+        updatedShare = list.sharedWith.filter(email => email !== deleteEmail)
+        updateDoc(doc(db, collectionName, list.id), {sharedWith: updatedShare});
+    }
     // Change current list Id
     function changeListId (id) {
         setCurrentListId(id);
@@ -208,7 +222,7 @@ function SignedInApp(props) {
     // Error Screen
     if (error) {
         return (
-			<p>Error: {JSON.stringify(error)}</p>
+			<p className='error-message'>Error: {JSON.stringify(error)}</p>
 		)
     }
 
@@ -219,6 +233,7 @@ function SignedInApp(props) {
             lists={lists}
             addList={addList}
             addShareToList={addShareToList}
+            stopShareOfList={stopShareOfList}
             renameList={renameList}
             changeListId={changeListId}
             currentListId={currentListId}
